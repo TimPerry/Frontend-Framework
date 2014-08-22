@@ -1,15 +1,14 @@
 module.exports = function( grunt ) {
 
   // load tasks
-  grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks( 'grunt-svgmin' );
-	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-	grunt.loadNpmTasks( 'grunt-contrib-imagemin' );
-	grunt.loadNpmTasks( 'grunt-stylestats' );
+	grunt.loadNpmTasks('grunt-svgmin');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-imagemin');
+	grunt.loadNpmTasks('grunt-stylestats');
 	grunt.loadNpmTasks('grunt-webfont');
 	
   grunt.initConfig({
@@ -27,7 +26,7 @@ module.exports = function( grunt ) {
     uglify: {
       dist: {
         files: {
-          'assets/js/combined.js': [ 'assets/js/combined.js' ]
+          'assets/js/prod.js': [ 'assets/js/dev.js' ]
         }
       },
     },
@@ -43,7 +42,7 @@ module.exports = function( grunt ) {
   				'assets/js/classes/*.js', 
   				'assets/js/main.js'
   			],
-  			dest: 'assets/js/combined.js'
+  			dest: 'assets/js/dev.js'
   		}
   	},
   		
@@ -52,7 +51,7 @@ module.exports = function( grunt ) {
   		icons: {
   			src: 'assets/icons/*.svg',
   			dest: 'assets/css/fonts',
-  			destCss: 'assets/sass/site/type/',
+  			destCss: 'assets/sass/type/',
   			options: {
   				font: 'icons',
   				hashes: false,
@@ -92,18 +91,24 @@ module.exports = function( grunt ) {
       }
     },
 
+		sass: {
+			dist: {
+				options: {
+					loadPath: require('node-bourbon').includePaths,
+					require: 'sass-globbing'
+				},
+				files: {
+					'assets/css/main.css': 'assets/scss/main.scss'
+				}
+			}
+		},
+
     // watch our project for changes
     watch: {
-			sass: {
-			    dist: {
-			      options: {
-			        includePaths: require('node-bourbon').includePaths
-			      },
-			      files: {
-			        'path/to/output.css': 'path/to/input.scss'
-			      }
-			    }
-			  }
+				css: {
+					files: "assets/scss/main.scss",
+					tasks: ['sass']
+				},
       js: {
         files: [
           'assets/js/plugins.js',
@@ -121,7 +126,9 @@ module.exports = function( grunt ) {
   });
 
   grunt.registerTask('default', ['concat', 'watch']);
-  grunt.registerTask('fonts', ['uglify']);
-  grunt.registerTask('prod', ['uglify']);
-    
+  grunt.registerTask('icons', ['webfont']);
+	grunt.registerTask('copydeps', ['copy']);
+	grunt.registerTask('stats', ['stylestats']);
+  grunt.registerTask('prod', ['sass:dist', 'concat', 'uglify', 'imagemin', 'svgmin', 'stylestats' ]);
+
 };
