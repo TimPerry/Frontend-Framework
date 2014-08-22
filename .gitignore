@@ -1,1 +1,6 @@
 .sass-cache
+._*
+vendor*
+bower_components*
+Gemfile.lock
+install.log
