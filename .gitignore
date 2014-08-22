@@ -4,3 +4,8 @@ vendor*
 bower_components*
 Gemfile.lock
 install.log
+.bundle*
+assets/scss/bourbon*
+assets/scss/neat*
+bin/*
+node_module*

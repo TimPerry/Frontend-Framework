@@ -1,6 +1,6 @@
 #! /bin/bash
 
-DIR="$( dirname $0 )" 
+INSTALL_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ "$(uname)" != "Darwin" ] 
 then
@@ -8,22 +8,22 @@ then
 	exit 1
 fi
 
-echo -e "Please note this script does not install global dependencies, of which are:\n- Ruby\n- Ruby Gems\n- NPM\n"
+echo -e "\nPlease note this script does not install global dependencies, of which are:\n- Ruby\n- Ruby Gems\n- NPM\n"
 
 echo -e "Installing gems...\n"
-bundle install --path vendor/bundle --binstubs=$DIR/bin > $DIR/install.log 2>&1
+bundle install --path vendor/bundle --binstubs=$INSTALL_DIR/bin > $INSTALL_DIR/install.log 2>&1
 
 echo -e "Installing node dependencies...\n"
-npm install > $DIR/install.log 2>&1
+npm install > $INSTALL_DIR/install.log 2>&1
 
-cd $DIR/assets/scss 2>&1
+cd $INSTALL_DIR/assets/scss 2>&1
 
 echo -e "Setting up boubon...\n"
-$DIR/bin/bourbon install > $DIR/install.log 2>&1
+$INSTALL_DIR/bin/bourbon install > $INSTALL_DIR/install.log 2>&1
 
 echo -e "Setting up neat...\n"
-$DIR/bin/neat install > $DIR/install.log 2>&1
+$INSTALL_DIR/bin/neat install > $INSTALL_DIR/install.log 2>&1
 
-cd $DIR 2>&1
+cd $INSTALL_DIR 2>&1
 
 echo -e "All done\n";

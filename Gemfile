@@ -4,4 +4,3 @@ gem 'sass'
 gem 'sass-globbing'
 gem 'bourbon'
 gem 'neat'
-
