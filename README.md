@@ -1,6 +1,6 @@
 # Frontend Framework
 
-Simple frontend framework uses Bourbon, Neat, Bitters, GruntJS.
+Simple frontend framework uses Bourbon, Neat, Bitters, Bower and GruntJS.
 
 ## Install
 
