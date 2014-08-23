@@ -5,17 +5,17 @@ Simple frontend framework uses Bourbon, Neat, Bitters, Bower and GruntJS.
 ## Install
 
 To install make sure you have:
-- A decent version of ruby installed e.g. >= 1.9
+- A decent version of ruby installed i.e. >= 1.9
 - Ruby gems setup.
 - NodeJS installed.
 
-One all of these are installed you should be good to run the installer:
+Once all of these are installed you should be good to run the installer:
 
 ```
 ./install.sh
 ```
 
-This will installs the the dependencies such as Bourbon as well as all the stuff for grunt and you should be good to go.
+This will install the dependencies such as Bourbon as well as all the node modules for grunt.
 
 ### Troubleshooting
 All output is logged to ./install.log - look in there if you have any problems.
