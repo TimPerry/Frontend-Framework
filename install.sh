@@ -16,6 +16,9 @@ bundle install --path vendor/bundle --binstubs=$INSTALL_DIR/bin > $INSTALL_DIR/i
 echo -e "Installing node dependencies...\n"
 npm install > $INSTALL_DIR/install.log 2>&1
 
+echo -e "Creating symbolic link for bower in bin/bower...\n"
+ln -s $INSTALL_DIR/node_modules/bower/bin/bower $INSTALL_DIR/bin/bower > $INSTALL_DIR/install.log 2>&1
+
 cd $INSTALL_DIR/assets/scss 2>&1
 
 echo -e "Setting up boubon...\n"

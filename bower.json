@@ -1,0 +1,17 @@
+{
+  "name": "Frontend-Framework",
+  "version": "1.0.0",
+  "homepage": "https://github.com/TimPerry/Frontend-Framework",
+  "authors": [
+    "Tim Perry <tim.r.perry@gmail.com>"
+  ],
+  "description": "Frontend framework",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
