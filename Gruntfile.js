@@ -59,7 +59,10 @@ module.exports = function (grunt) {
                 src: ['assets/icons/*.svg'],
                 destCss: 'assets/scss/type/_icons.scss',
                 destFonts: 'assets/css/fonts/icons.{svg,woff,eot,ttf}',
-                fontFamily: 'icons'
+                fontFamily: 'icons',
+                cssRouter: function (fontpath) {
+                    return "./fonts/icons." + fontpath.substring(fontpath.lastIndexOf(".")+1);
+                }
             }
         },
 
