@@ -10,3 +10,4 @@ assets/scss/neat*
 assets/scss/base*
 bin/*
 node_module*
+.idea*
