@@ -8,7 +8,7 @@ then
 	exit 1
 fi
 
-echo -e "\nPlease note this script does not install global dependencies, of which are:\n- Ruby\n- Ruby Gems\n- NPM\n-Font Forge\n"
+echo -e "\nPlease note this script does not install global dependencies, of which are:\n- Ruby\n- Ruby Gems\n- NPM\n-GruntJS\n"
 
 echo -e "Installing gems...\n"
 bundle install --path vendor/bundle --binstubs=$INSTALL_DIR/bin > $INSTALL_DIR/install.log 2>&1

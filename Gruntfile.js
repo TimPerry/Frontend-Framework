@@ -14,7 +14,7 @@ module.exports = function (grunt) {
 
     // register tasks
     grunt.registerTask('default', ['concat', 'watch']);
-    grunt.registerTask('icons', ['env:build', 'webfont']);
+    grunt.registerTask('icons', ['env:build', 'font']);
     grunt.registerTask('copydeps', ['copy']);
     grunt.registerTask('stats', ['stylestats']);
     grunt.registerTask('prod', ['sass:dist', 'concat', 'uglify', 'imagemin', 'svgmin', 'stylestats' ]);
@@ -26,9 +26,9 @@ module.exports = function (grunt) {
                 files: [
                     { expand: true, cwd: 'bower_components/', src: [ '**/*.js' ], dest: 'assets/js/vendor/' },
                     { expand: true, cwd: 'bower_components/', src: [ '**/*.scss' ], dest: 'assets/scss/vendor/' },
-                    { expand: true, cwd: 'bower_components/', src: [ '**/*.css' ], dest: 'assets/scss/vendor/' },
+                    { expand: true, cwd: 'bower_components/', src: [ '**/*.css' ], dest: 'assets/scss/vendor/' }
                 ]
-            },
+            }
         },
         // concatenation and minification all in one
         uglify: {
@@ -36,7 +36,7 @@ module.exports = function (grunt) {
                 files: {
                     'assets/js/prod.js': [ 'assets/js/dev.js' ]
                 }
-            },
+            }
         },
 
         // concatenation
@@ -57,9 +57,9 @@ module.exports = function (grunt) {
         font: {
             all: {
                 src: ['assets/icons/*.svg'],
-                destCss: 'assets/scss/type/icons.scss',
-                destFonts: 'assets/css/fonts/.{svg,woff,eot,ttf}'
-
+                destCss: 'assets/scss/type/_icons.scss',
+                destFonts: 'assets/css/fonts/icons.{svg,woff,eot,ttf}',
+                fontFamily: 'icons'
             }
         },
 
