@@ -1,6 +1,3 @@
-@import 'bourbon/bourbon';
-@import 'neat/neat';
-@import "base/base";
-@import 'vars/*';
-@import 'type/*';
-@import 'objects/*';
+@import "core/core";
+@import "vendor/vendor";
+@import "site/site";

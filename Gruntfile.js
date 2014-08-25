@@ -30,6 +30,7 @@ module.exports = function (grunt) {
                 ]
             }
         },
+
         // concatenation and minification all in one
         uglify: {
             dist: {
@@ -57,7 +58,7 @@ module.exports = function (grunt) {
         font: {
             all: {
                 src: ['assets/icons/*.svg'],
-                destCss: 'assets/scss/type/_icons.scss',
+                destCss: 'assets/scss/site/type/_icons.scss',
                 destFonts: 'assets/css/fonts/icons.{svg,woff,eot,ttf}',
                 fontFamily: 'icons',
                 cssRouter: function (fontpath) {
