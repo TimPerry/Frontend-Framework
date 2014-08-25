@@ -42,6 +42,6 @@ $INSTALL_DIR/bin/neat install >> $INSTALL_DIR/install.log 2>&1
 echo -e "Setting up bitters...\n"
 $INSTALL_DIR/bin/bitters install >> $INSTALL_DIR/install.log 2>&1
 
-cd $INSTALL_DIR >> 2>&1
+cd $INSTALL_DIR >> $INSTALL_DIR/install.log 2>&1
 
 echo -e "All done\n";
