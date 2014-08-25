@@ -21,6 +21,9 @@ npm update > $INSTALL_DIR/install.log 2>&1
 echo -e "Installing bower dependencies...\n";
 bin/bower install  > $INSTALL_DIR/install.log 2>&1
 
+echo -e "Moving dependencies to vendor folder..."
+grunt copydeps > $INSTALL_DIR/install.log 2>&1
+
 echo -e "Creating symbolic link for bower in bin/bower...\n"
 ln -s $INSTALL_DIR/node_modules/bower/bin/bower $INSTALL_DIR/bin/bower > $INSTALL_DIR/install.log 2>&1
 

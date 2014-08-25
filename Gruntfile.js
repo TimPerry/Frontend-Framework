@@ -13,7 +13,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-env');
 
     // register tasks
-    grunt.registerTask('default', ['concat', 'watch']);
+    grunt.registerTask('default', ['concat', 'sass:dev', 'watch']);
     grunt.registerTask('icons', ['env:build', 'font']);
     grunt.registerTask('copydeps', ['copy']);
     grunt.registerTask('stats', ['stylestats']);
@@ -24,23 +24,21 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                    { expand: true, cwd: 'bower_components/', src: [ '**/*.js' ], dest: 'assets/js/vendor/' },
-                    { expand: true, cwd: 'bower_components/', src: [ '**/*.scss' ], dest: 'assets/scss/vendor/' },
-                    { expand: true, cwd: 'bower_components/', src: [ '**/*.css' ], dest: 'assets/scss/vendor/' }
+                    { expand: true, cwd: 'bower_components/', src: ['**/*.js'], dest: 'assets/js/vendor/' },
+                    { expand: true, cwd: 'bower_components/', src: ['**/*.scss'], dest: 'assets/scss/vendor/' },
+                    { expand: true, cwd: 'bower_components/', src: ['**/*.css'], dest: 'assets/scss/vendor/' }
                 ]
             }
         },
 
-        // concatenation and minification all in one
         uglify: {
             dist: {
                 files: {
-                    'assets/js/prod.js': [ 'assets/js/dev.js' ]
+                    'assets/js/prod.js': ['assets/js/dev.js']
                 }
             }
         },
 
-        // concatenation
         concat: {
             options: {
                 separator: ''
@@ -62,22 +60,20 @@ module.exports = function (grunt) {
                 destFonts: 'assets/css/fonts/icons.{svg,woff,eot,ttf}',
                 fontFamily: 'icons',
                 cssRouter: function (fontpath) {
-                    return "./fonts/icons." + fontpath.substring(fontpath.lastIndexOf(".")+1);
+                    return "./fonts/icons." + fontpath.substring(fontpath.lastIndexOf(".") + 1);
                 }
             }
         },
 
-        // Imagemin
         imagemin: {
             files: {
                 expand: true,
                 cwd: 'assets/img/',
-                src: [ '**/*.{png,gif,jpg}' ],
+                src: ['**/*.{png,gif,jpg}'],
                 dest: 'assets/img/'
             }
         },
 
-        // SVG Min
         svgmin: {
             options: {
                 plugins: [
@@ -91,7 +87,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'assets/img/',
-                        src: [ '**/*.svg' ],
+                        src: ['**/*.svg'],
                         dest: 'assets/img/'
                     }
                 ]
@@ -105,29 +101,38 @@ module.exports = function (grunt) {
                     require: 'sass-globbing'
                 },
                 files: {
-                    'assets/css/main.css': 'assets/scss/main.scss'
+                    'assets/css/prod.css': 'assets/scss/main.scss'
+                }
+            },
+            dev: {
+                options: {
+                    loadPath: require('node-bourbon').includePaths,
+                    require: 'sass-globbing',
+                    lineNumbers: true
+                },
+                files: {
+                    'assets/css/dev.css': 'assets/scss/main.scss'
                 }
             }
         },
 
-        // watch our project for changes
         watch: {
             css: {
-                files: "assets/scss/main.scss",
-                tasks: ['sass']
+                files: "assets/scss/**/*.scss",
+                tasks: ['sass:dev']
             },
             js: {
                 files: [
                     'assets/js/plugins.js',
                     'assets/js/classes/*.js',
-                    'assets/js/main.dev.js'
+                    'assets/js/main.js'
                 ],
                 tasks: ['concat']
             }
         },
 
         stylestats: {
-            src: [ 'assets/css/main.css' ]
+            src: ['assets/css/prod.css']
         },
 
         env: {

@@ -8,6 +8,7 @@ To install make sure you have:
 - A decent version of ruby installed i.e. >= 1.9
 - Ruby gems setup.
 - NodeJS installed.
+- GruntJS installed.
 
 Once all of these are installed you should be good to run the installer:
 
