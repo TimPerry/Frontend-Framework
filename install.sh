@@ -19,12 +19,6 @@ npm install >> $INSTALL_DIR/install.log 2>&1
 # some bug with npm - have to use update to install all deps deps
 npm update >> $INSTALL_DIR/install.log 2>&1
 
-echo -e "Installing bower dependencies...\n";
-bin/bower install >> $INSTALL_DIR/install.log 2>&1
-
-echo -e "Moving dependencies to vendor folder...\n"
-grunt copydeps >> $INSTALL_DIR/install.log 2>&1
-
 echo -e "Creating symbolic link for bower in bin/bower...\n"
 ln -s $INSTALL_DIR/node_modules/bower/bin/bower $INSTALL_DIR/bin/bower >> $INSTALL_DIR/install.log 2>&1
 
@@ -43,5 +37,11 @@ echo -e "Setting up bitters...\n"
 $INSTALL_DIR/bin/bitters install >> $INSTALL_DIR/install.log 2>&1
 
 cd $INSTALL_DIR >> $INSTALL_DIR/install.log 2>&1
+
+echo -e "Installing bower dependencies...\n";
+bin/bower install >> $INSTALL_DIR/install.log 2>&1
+
+echo -e "Moving dependencies to vendor folder...\n"
+grunt copydeps >> $INSTALL_DIR/install.log 2>&1
 
 echo -e "All done\n";
